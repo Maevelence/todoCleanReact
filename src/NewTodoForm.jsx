@@ -1,15 +1,18 @@
 import { useState } from "react"
+import { useDispatch } from "react-redux"
+import { addTodo } from "./todoSlice"
 
 
-export function NewTodoForm({ onSubmit }) {
+export function NewTodoForm() {
   const [newItem, setNewItem] = useState("")
-
+  const dispatch = useDispatch()
+  
   function handleSubmit(e) {
     e.preventDefault()
     if (newItem === "") return
-
-    onSubmit(newItem)
-
+    
+    dispatch(addTodo(newItem))
+    
     setNewItem("")
   }
 
